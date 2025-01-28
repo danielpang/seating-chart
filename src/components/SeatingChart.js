@@ -107,7 +107,7 @@ const SeatingChart = () => {
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 outline-hidden transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 outline-none transition-all duration-200"
                   />
                   <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                 </div>

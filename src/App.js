@@ -1,6 +1,5 @@
 import React from 'react';
-import SeatingChart from './components/SeatingChart.js';
-// import SeatingChart from './components/seating-preview.tsx';
+import SeatingChart from './components/SeatingChart';
 
 function App() {
   return (
