@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Users } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import * as Papa from 'papaparse';
+
+const csvFilePath = require('../lib/seating.csv');
 
 const GUEST_DATA = {
   "John Smith": "1",
@@ -23,7 +26,20 @@ const SeatingChart = () => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setIsDarkMode(true);
     }
-    setGuestList(GUEST_DATA);
+
+    fetch( csvFilePath )
+            .then( response => response.text() )
+            .then( responseText => {
+                // -- parse csv
+                var data = Papa.parse(responseText);
+                let guestListData = {};
+                for (let index = 0; index < data.data.length; index++) {
+                    console.log('data.data[index]:', data.data[index]);
+                    guestListData[data.data[index][0]] = data.data[index][1];
+                }
+                console.log('guestListData: ', guestListData);
+                setGuestList(guestListData);
+            });
   }, []);
 
   useEffect(() => {
@@ -58,6 +74,7 @@ const SeatingChart = () => {
     }
 
     setTimeout(() => {
+      console.log('guestList 2:', guestList);
       const match = Object.entries(guestList).find(([name]) => 
         fuzzyMatch(searchName, name)
       );
