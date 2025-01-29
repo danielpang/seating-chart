@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Users } from 'lucide-react';
+import { Search, Users, Mail } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import Layout from './Layout';
 import * as Papa from 'papaparse';
 
-const csvFilePath = require('../lib/seating.csv');
-
-const GUEST_DATA = {
-  "John Smith": "1",
-  "Jane Doe": "2",
-  "Robert Johnson": "3",
-  "Emily Davis": "1",
-  "Michael Brown": "2"
-};
+const csvFilePath = require('../lib/seating_4.csv');
 
 const SeatingChart = () => {
-  const [searchName, setSearchName] = useState('');
-  const [guestList, setGuestList] = useState({});
-  const [foundGuest, setFoundGuest] = useState(null);
-  const [error, setError] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+    const [searchName, setSearchName] = useState('');
+    const [guestList, setGuestList] = useState([]);
+    const [foundGuests, setFoundGuests] = useState([]);
+    const [error, setError] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check system preference for dark mode
@@ -31,20 +25,34 @@ const SeatingChart = () => {
             .then( response => response.text() )
             .then( responseText => {
                 // -- parse csv
-                var data = Papa.parse(responseText);
-                let guestListData = {};
-                for (let index = 0; index < data.data.length; index++) {
-                    console.log('data.data[index]:', data.data[index]);
-                    guestListData[data.data[index][0]] = data.data[index][1];
-                }
-                console.log('guestListData: ', guestListData);
-                setGuestList(guestListData);
+                Papa.parse(responseText, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: (results) => {
+                      if (results.data && results.data.length > 0) {
+                        // Process the CSV data and add identifiers
+                        const processedData = results.data.map((row, index) => ({
+                          name: row.name,
+                          table: row.table,
+                          email: row.email,
+                          identifier: `guest_${index}_${row.name.toLowerCase().replace(/\s+/g, '_')}`
+                        }));
+                        setGuestList(processedData);
+                      } else {
+                        // If CSV is empty, use fallback data
+                        console.log('No data found in CSV');
+                        setGuestList([]);
+                      }
+                      setIsLoading(false);
+                    },
+                    error: (error) => {
+                      console.error('CSV parsing error:', error);
+                      setGuestList([]);
+                      setIsLoading(false);
+                    }
+                  });
             });
   }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkMode);
-  }, [isDarkMode]);
 
   const fuzzyMatch = (input, target) => {
     input = input.toLowerCase();
@@ -65,7 +73,7 @@ const SeatingChart = () => {
   const handleSearch = () => {
     setIsSearching(true);
     setError('');
-    setFoundGuest(null);
+    setFoundGuests([]);
 
     if (!searchName.trim()) {
       setError('Please enter a name to search');
@@ -74,32 +82,60 @@ const SeatingChart = () => {
     }
 
     setTimeout(() => {
-      console.log('guestList 2:', guestList);
-      const match = Object.entries(guestList).find(([name]) => 
-        fuzzyMatch(searchName, name)
+      const matches = guestList.filter(guest => 
+        fuzzyMatch(searchName, guest.name)
       );
 
-      if (match) {
-        setFoundGuest({
-          name: match[0],
-          table: match[1]
-        });
+      if (matches.length > 0) {
+        setFoundGuests(matches);
       } else {
-        setError('No matching guest found');
+        setError('No matching guests found, please speak to our wedding coordinator');
       }
       setIsSearching(false);
     }, 500);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
+  const GuestCard = ({ guest, hasDuplicates }) => (
+    <div 
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105"
+    >
+      <div className="text-center">
+        <div className="text-4xl font-bold text-blue-500 mb-2">
+          {guest.table}
+        </div>
+        <div className="text-gray-800 dark:text-gray-200 font-medium mb-1">
+          {guest.name}
+        </div>
+        <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+          Table Number
+        </div>
+        
+        {/* Show email if there are duplicates */}
+        {hasDuplicates && guest?.email && (
+          <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <Mail size={14} />
+            <span className="truncate">{(guest.email) ? guest.email : ""}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  if (isLoading) {
+    return (
+      <Layout isDarkMode={isDarkMode}>
+        <div className="flex items-center justify-center min-h-[50vh]">
+          <div className="text-lg text-gray-600 dark:text-gray-300">
+            Loading guest list...
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-100'} transition-colors duration-200`}>
-      <div className="container mx-auto p-4 max-w-2xl">
+    <Layout isDarkMode={isDarkMode}>
+      <div className="max-w-4xl mx-auto">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-8 text-white relative">
@@ -108,9 +144,11 @@ const SeatingChart = () => {
             </div>
             <div className="flex items-center gap-3 mb-2">
               <Users size={28} />
-              <h2 className="text-2xl font-bold">Event Seating Chart</h2>
+              <h2 className="text-2xl font-bold">Daniel & Anthea's Wedding</h2>
             </div>
-            <p className="text-blue-100">Find your assigned table for the event</p>
+            <p className="text-blue-100">
+              Find your assigned table for the reception
+            </p>
           </div>
 
           <div className="p-8">
@@ -123,7 +161,7 @@ const SeatingChart = () => {
                     placeholder="Enter your name"
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 outline-none transition-all duration-200"
                   />
                   <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
@@ -140,42 +178,43 @@ const SeatingChart = () => {
 
             {/* Error Message */}
             {error && (
-              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 fade-in">
+              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400">
                 {error}
               </div>
             )}
 
             {/* Results Display */}
-            {foundGuest && (
-              <div className="mt-6 fade-in">
+            {foundGuests.length > 0 && (
+              <div className="mt-6">
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                      Welcome, {foundGuest.name}!
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6">We've found your seating assignment</p>
-                    
-                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-sm mx-auto">
-                      <div className="text-6xl font-bold text-blue-500 mb-2">
-                        {foundGuest.table}
-                      </div>
-                      <div className="text-gray-500 dark:text-gray-400">
-                        Table Number
-                      </div>
-                    </div>
-                    
-                    <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
-                      Please proceed to your assigned table when the event begins
-                    </p>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4 text-center">
+                    Found {foundGuests.length} matching {foundGuests.length === 1 ? 'guest' : 'guests'}
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {foundGuests.map((guest) => {
+                      const hasDuplicates = foundGuests.filter(g => g.name === guest.name).length > 1;
+                      return (
+                        <GuestCard 
+                          key={guest.identifier} 
+                          guest={guest} 
+                          hasDuplicates={hasDuplicates}
+                        />
+                      );
+                    })}
                   </div>
+                  
+                  <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
+                    Please proceed to your assigned table when the reception begins
+                  </p>
                 </div>
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
-}
+};
 
 export default SeatingChart;
