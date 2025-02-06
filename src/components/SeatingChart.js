@@ -54,20 +54,30 @@ const SeatingChart = () => {
             });
   }, []);
 
-  const fuzzyMatch = (input, target) => {
+  const consecutiveMatch = (input, target) => {
     input = input.toLowerCase();
     target = target.toLowerCase();
-    let inputIdx = 0;
-    let targetIdx = 0;
     
-    while (inputIdx < input.length && targetIdx < target.length) {
-      if (input[inputIdx] === target[targetIdx]) {
-        inputIdx++;
+    // If input is empty, don't match anything
+    if (!input.trim()) {
+      return false;
+    }
+
+    // Try to find a consecutive match starting at each position in target
+    for (let i = 0; i <= target.length - input.length; i++) {
+      let matches = true;
+      for (let j = 0; j < input.length; j++) {
+        if (target[i + j] !== input[j]) {
+          matches = false;
+          break;
+        }
       }
-      targetIdx++;
+      if (matches) {
+        return true;
+      }
     }
     
-    return inputIdx === input.length;
+    return false;
   };
 
   const handleSearch = () => {
@@ -83,7 +93,7 @@ const SeatingChart = () => {
 
     setTimeout(() => {
       const matches = guestList.filter(guest => 
-        fuzzyMatch(searchName, guest.name)
+        consecutiveMatch(searchName, guest.name)
       );
 
       if (matches.length > 0) {
