@@ -4,6 +4,8 @@ import ThemeToggle from './ThemeToggle';
 import Layout from './Layout';
 import consecutiveMatch from './Search';
 import * as Papa from 'papaparse';
+import FloorPlan from './FloorPlan';
+import GuestCard from './GuestCard';
 
 const csvFilePath = require('../lib/seating_4.csv');
 
@@ -15,6 +17,7 @@ const SeatingChart = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedTable, setSelectedTable] = useState(null);
 
   useEffect(() => {
     // Check system preference for dark mode
@@ -59,6 +62,7 @@ const SeatingChart = () => {
     setIsSearching(true);
     setError('');
     setFoundGuests([]);
+    setSelectedTable(null);
 
     if (!searchName.trim()) {
       setError('Please enter a name to search');
@@ -74,37 +78,41 @@ const SeatingChart = () => {
       if (matches.length > 0) {
         setFoundGuests(matches);
       } else {
-        setError('No matching guests found, please speak to our wedding coordinator');
+        setError('No matching guests found');
       }
       setIsSearching(false);
     }, 500);
   };
 
-  const GuestCard = ({ guest, hasDuplicates }) => (
-    <div 
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105"
-    >
-      <div className="text-center">
-        <div className="text-4xl font-bold text-blue-500 mb-2">
-          {guest.table}
-        </div>
-        <div className="text-gray-800 dark:text-gray-200 font-medium mb-1">
-          {guest.name}
-        </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-          Table Number
-        </div>
+  const handleCardSelect = (tableNumber) => {
+    setSelectedTable(selectedTable === tableNumber ? null : tableNumber);
+  };
+
+  // const GuestCard = ({ guest, hasDuplicates }) => (
+  //   <div 
+  //     className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105"
+  //   >
+  //     <div className="text-center">
+  //       <div className="text-4xl font-bold text-blue-500 mb-2">
+  //         {guest.table}
+  //       </div>
+  //       <div className="text-gray-800 dark:text-gray-200 font-medium mb-1">
+  //         {guest.name}
+  //       </div>
+  //       <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+  //         Table Number
+  //       </div>
         
-        {/* Show email if there are duplicates */}
-        {hasDuplicates && guest?.email && (
-          <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-            <Mail size={14} />
-            <span className="truncate">{(guest.email) ? guest.email : ""}</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  //       {/* Show email if there are duplicates */}
+  //       {hasDuplicates && guest?.email && (
+  //         <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+  //           <Mail size={14} />
+  //           <span className="truncate">{(guest.email) ? guest.email : ""}</span>
+  //         </div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
 
   if (isLoading) {
     return (
@@ -170,31 +178,44 @@ const SeatingChart = () => {
 
             {/* Results Display */}
             {foundGuests.length > 0 && (
-              <div className="mt-6">
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4 text-center">
-                    Found {foundGuests.length} matching {foundGuests.length === 1 ? 'guest' : 'guests'}
-                  </h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {foundGuests.map((guest) => {
-                      const hasDuplicates = foundGuests.filter(g => g.name === guest.name).length > 1;
-                      return (
-                        <GuestCard 
-                          key={guest.identifier} 
-                          guest={guest} 
-                          hasDuplicates={hasDuplicates}
-                        />
-                      );
-                    })}
+                <div className="mt-6">
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4 text-center">
+                      Found {foundGuests.length} matching {foundGuests.length === 1 ? 'guest' : 'guests'}
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {foundGuests.map((guest) => {
+                        const hasDuplicates = foundGuests.filter(g => g.name === guest.name).length > 1;
+                        return (
+                          <GuestCard 
+                            key={guest.identifier} 
+                            guest={guest} 
+                            hasDuplicates={hasDuplicates}
+                            isSelected={selectedTable === guest.table}
+                            onSelect={handleCardSelect}
+                          />
+                        );
+                      })}
+                    </div>
+                    
+                    <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
+                      Please proceed to your assigned table when the event begins
+                    </p>
                   </div>
-                  
-                  <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
-                    Please proceed to your assigned table when the reception begins
-                  </p>
                 </div>
-              </div>
             )}
+
+            {/* Floor Plan */}
+            <div className="mt-6">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-4">
+                  Floor Plan
+                </h3>
+                <FloorPlan 
+                  highlightedTables={foundGuests.map(guest => guest.table)}
+                  selectedTable={selectedTable}
+                />
+              </div>
           </div>
         </div>
       </div>
