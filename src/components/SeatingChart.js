@@ -186,19 +186,19 @@ const SeatingChart = () => {
                     Please proceed to your assigned table when the event begins
                   </p>
                 </div>
+
+                {/* Floor Plan */}
+                <div className="mt-8">
+                  <h3 className="text-xl font-medium text-gray-800 dark:text-gray-200">
+                  Floor Plan
+                  </h3>
+                  <FloorPlan
+                    highlightedTables={foundGuests.map((guest) => guest.table)}
+                    selectedTable={selectedTable}
+                  />
+                </div>
               </div>
             )}
-
-            {/* Floor Plan */}
-            <div className="mt-8">
-              <h3 className="text-xl font-medium text-gray-800 dark:text-gray-200">
-                Floor Plan
-              </h3>
-              <FloorPlan
-                highlightedTables={foundGuests.map((guest) => guest.table)}
-                selectedTable={selectedTable}
-              />
-            </div>
           </div>
         </div>
       </div>
