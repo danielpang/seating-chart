@@ -88,32 +88,6 @@ const SeatingChart = () => {
     setSelectedTable(selectedTable === tableNumber ? null : tableNumber);
   };
 
-  // const GuestCard = ({ guest, hasDuplicates }) => (
-  //   <div 
-  //     className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105"
-  //   >
-  //     <div className="text-center">
-  //       <div className="text-4xl font-bold text-blue-500 mb-2">
-  //         {guest.table}
-  //       </div>
-  //       <div className="text-gray-800 dark:text-gray-200 font-medium mb-1">
-  //         {guest.name}
-  //       </div>
-  //       <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-  //         Table Number
-  //       </div>
-        
-  //       {/* Show email if there are duplicates */}
-  //       {hasDuplicates && guest?.email && (
-  //         <div className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-  //           <Mail size={14} />
-  //           <span className="truncate">{(guest.email) ? guest.email : ""}</span>
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
-
   if (isLoading) {
     return (
       <Layout isDarkMode={isDarkMode}>
@@ -178,7 +152,7 @@ const SeatingChart = () => {
 
             {/* Results Display */}
             {foundGuests.length > 0 && (
-                <div className="mt-6">
+                <div className="mt-8 max-w-4xl mx-auto">
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
                     <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4 text-center">
                       Found {foundGuests.length} matching {foundGuests.length === 1 ? 'guest' : 'guests'}
@@ -207,15 +181,15 @@ const SeatingChart = () => {
             )}
 
             {/* Floor Plan */}
-            <div className="mt-6">
-                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-4">
+            <div className="mt-8">
+                <h3 className="text-xl font-medium text-gray-800 dark:text-gray-200">
                   Floor Plan
                 </h3>
                 <FloorPlan 
                   highlightedTables={foundGuests.map(guest => guest.table)}
                   selectedTable={selectedTable}
                 />
-              </div>
+            </div>
           </div>
         </div>
       </div>
