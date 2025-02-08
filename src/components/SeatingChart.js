@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, Users, Mail } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import Layout from './Layout';
+import consecutiveMatch from './Search';
 import * as Papa from 'papaparse';
 
 const csvFilePath = require('../lib/seating_4.csv');
@@ -53,32 +54,6 @@ const SeatingChart = () => {
                   });
             });
   }, []);
-
-  const consecutiveMatch = (input, target) => {
-    input = input.toLowerCase();
-    target = target.toLowerCase();
-    
-    // If input is empty, don't match anything
-    if (!input.trim()) {
-      return false;
-    }
-
-    // Try to find a consecutive match starting at each position in target
-    for (let i = 0; i <= target.length - input.length; i++) {
-      let matches = true;
-      for (let j = 0; j < input.length; j++) {
-        if (target[i + j] !== input[j]) {
-          matches = false;
-          break;
-        }
-      }
-      if (matches) {
-        return true;
-      }
-    }
-    
-    return false;
-  };
 
   const handleSearch = () => {
     setIsSearching(true);

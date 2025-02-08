@@ -1,0 +1,104 @@
+input,target,expectedResult
+Avory,Avory,TRUE
+Joce,Joce,TRUE
+Emily,Emily,TRUE
+Erika,Erika,TRUE
+Ally,Ally,TRUE
+Carissa,Carissa,TRUE
+Jonathan,Jonathan,TRUE
+Neil,Neil,TRUE
+David,David,TRUE
+Nathan,Nathan,TRUE
+Denzel,Denzel,TRUE
+Dao,Dao,TRUE
+Cynthia Lam,Cynthia Lam,TRUE
+Tiffany Wu,Tiffany Wu,TRUE
+Renee Lau,Renee Lau,TRUE
+Christy Lam,Christy Lam,TRUE
+Justin Huang,Justin Huang,TRUE
+Mitchell Fong,Mitchell Fong,TRUE
+Janet Fong,Janet Fong,TRUE
+Lennex Szeto,Lennex Szeto,TRUE
+Michelle Ting,Michelle Ting,TRUE
+Jessica Li,Jessica Li,TRUE
+Jonathan Tsang,Jonathan Tsang,TRUE
+Amos Mak,Amos Mak,TRUE
+Wilfrid Wong,Wilfrid Wong,TRUE
+Erin,Erin,TRUE
+Hanbi,Hanbi,TRUE
+Daniel Park,Daniel Park,TRUE
+Ashley,Ashley,TRUE
+Ashley's BF,Ashley's BF,TRUE
+Amelia,Amelia,TRUE
+Naomi,Naomi,TRUE
+Keith*,Keith*,TRUE
+Timothy Chan,Timothy Chan,TRUE
+Rachel,Rachel,TRUE
+Jackie,Jackie,TRUE
+Andrew,Andrew,TRUE
+Sean,Sean,TRUE
+Natalie,Natalie,TRUE
+Jen Chen,Jen Chen,TRUE
+Arthur,Arthur,TRUE
+Ben,Ben,TRUE
+Joce,Joce,TRUE
+Tania,Tania,TRUE
+Glory,Glory,TRUE
+Bonnie,Bonnie,TRUE
+Kevin,Kevin,TRUE
+Steven,Steven,TRUE
+Joey,Joey,TRUE
+Ken,Ken,TRUE
+Pat,Pat,TRUE
+Anderson,Anderson,TRUE
+Yikwan,Yikwan,TRUE
+Kevin Hsiao,Kevin Hsiao,TRUE
+Kitty Li,Kitty Li,TRUE
+Andrew Lee,Andrew Lee,TRUE
+Melissa,Melissa,TRUE
+Michelle,Michelle,TRUE
+Jef,Jef,TRUE
+Mat,Mat,TRUE
+Afsheen,Afsheen,TRUE
+Jinhui,Jinhui,TRUE
+Oliver,Oliver,TRUE
+Heather,Heather,TRUE
+Eric,Eric,TRUE
+Kendall,Kendall,TRUE
+Alisah,Alisah,TRUE
+Jess,Jess,TRUE
+Nathania,Nathania,TRUE
+Cass,Cass,TRUE
+Rachel,Rachel,TRUE
+Sara,Sara,TRUE
+Michelle Hu,Michelle Hu,TRUE
+Kelvin,Kelvin,TRUE
+Jon Tam,Jon Tam,TRUE
+Estelle,Estelle,TRUE
+Queenie,Queenie,TRUE
+Nathan,Nathan,TRUE
+Susana,Susana,TRUE
+Toby,Toby,TRUE
+Ryan,Ryan,TRUE
+Sam Ho,Sam Ho,TRUE
+Abby,Abby,TRUE
+Josh Ching,Josh Ching,TRUE
+Christina,Christina,TRUE
+Joyce,Joyce,TRUE
+Cameron Lenius,Cameron Lenius,TRUE
+Victoria Chu,Victoria Chu,TRUE
+Jaydon Lau,Jaydon Lau,TRUE
+Hanoch Yeung,Hanoch Yeung,TRUE
+Alice Lau,Alice Lau,TRUE
+Bryan Wong,Bryan Wong,TRUE
+Bethany,Bethany,TRUE
+Jason,Jason,TRUE
+Rebecca,Rebecca,TRUE
+Silas,Silas,TRUE
+Rachel,Rachel,TRUE
+Jeffrey Chan,Jeffrey Chan,TRUE
+Tiffany,Tiffany,TRUE
+Harold,Harold,TRUE
+Suzanne,Suzanne,TRUE
+Gabe Sham,Gabe Sham,TRUE
+Timothy Chan,Timothy Chan,TRUE
