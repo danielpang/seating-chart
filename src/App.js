@@ -1,5 +1,5 @@
-import React from 'react';
-import SeatingChart from './components/SeatingChart';
+import React from "react";
+import SeatingChart from "./components/SeatingChart";
 
 function App() {
   return (
