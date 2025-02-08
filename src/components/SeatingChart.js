@@ -72,7 +72,7 @@ const SeatingChart = () => {
 
     setTimeout(() => {
       const matches = guestList.filter((guest) =>
-        consecutiveMatch(searchName, guest.name),
+        consecutiveMatch(searchName.trim(), guest.name),
       );
 
       if (matches.length > 0) {
@@ -130,6 +130,7 @@ const SeatingChart = () => {
                     type="text"
                     placeholder="Enter your name"
                     value={searchName}
+                    maximum-scale={100}
                     onChange={(e) => setSearchName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 outline-none transition-all duration-200"
