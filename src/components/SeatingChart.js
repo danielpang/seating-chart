@@ -112,7 +112,7 @@ const SeatingChart = () => {
                 onToggle={() => setIsDarkMode(!isDarkMode)}
               />
             </div>
-            <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center gap-1.5 mb-2">
               <Users size={28} />
               <h2 className="text-2xl font-playfair-display">Daniel & Anthea's Wedding</h2>
             </div>
