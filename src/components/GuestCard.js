@@ -8,12 +8,12 @@ const GuestCard = ({ guest, hasDuplicates, isSelected, onSelect }) => (
     onClick={() => onSelect(guest.table)}
   >
     <div className="text-center">
+      <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+        Table
+      </div>
       <div className="text-4xl font-bold text-blue-500 mb-2">{guest.table}</div>
       <div className="text-gray-800 dark:text-gray-200 font-medium mb-1">
         {guest.name}
-      </div>
-      <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-        Table Number
       </div>
 
       {hasDuplicates && guest.email && (

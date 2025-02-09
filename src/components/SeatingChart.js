@@ -147,7 +147,7 @@ const SeatingChart = () => {
                   disabled={isSearching}
                   className="w-full text-center px-10 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
                 >
-                  {isSearching ? "Searching..." : "Search"}
+                  {isSearching ? "Searching..." : "Find Seat"}
                 </button>
               </div>
             </div>
