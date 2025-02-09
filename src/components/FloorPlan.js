@@ -28,12 +28,13 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
     { num: 7, x: 460, y: 320 },
     { num: 8, x: 660, y: 320 },
     { num: 9, x: 860, y: 320 },
+    { num: 10, x: 1060, y: 320 },
     // Row 3 (5 tables)
-    { num: 10, x: 160, y: 520 },
-    { num: 11, x: 360, y: 520 },
-    { num: 12, x: 560, y: 520 },
-    { num: 13, x: 760, y: 520 },
-    { num: 14, x: 960, y: 520 },
+    { num: 11, x: 160, y: 520 },
+    { num: 12, x: 360, y: 520 },
+    { num: 13, x: 560, y: 520 },
+    { num: 14, x: 760, y: 520 },
+    { num: 15, x: 960, y: 520 },
   ];
 
   return (
@@ -51,14 +52,14 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
 
           {/* Entrance */}
           <rect
-            x="510"
+            x="0"
             y="580"
             width="100"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="560"
+            x="50"
             y="605"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
@@ -66,16 +67,22 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             Entrance
           </text>
 
-          {/* Center aisle indicators */}
-          <line
-            x1="560"
-            y1="580"
-            x2="560"
-            y2="540"
-            className="stroke-gray-300 dark:stroke-gray-600"
-            strokeWidth="3"
-            strokeDasharray="6"
+          {/* Bar */}
+          <rect
+            x="0"
+            y="290"
+            width="100"
+            height="40"
+            className="fill-gray-300 dark:fill-gray-600"
           />
+          <text
+            x="50"
+            y="315"
+            className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
+            textAnchor="middle"
+          >
+            Bar
+          </text>
 
           {/* Tables */}
           {tables.map((table) => (
@@ -97,15 +104,6 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
               </text>
             </g>
           ))}
-
-          {/* Legend */}
-          <text
-            x="800"
-            y="610"
-            className="text-base fill-gray-500 dark:fill-gray-400"
-          >
-            Round tables seat 8 people each
-          </text>
         </svg>
       </div>
     </div>

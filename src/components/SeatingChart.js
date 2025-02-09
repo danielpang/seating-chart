@@ -140,12 +140,14 @@ const SeatingChart = () => {
                     size={20}
                   />
                 </div>
+              </div>
+              <div className="relative flex-1 py-3">
                 <button
                   onClick={handleSearch}
                   disabled={isSearching}
-                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors duration-200 flex items-center gap-2 disabled:opacity-50"
+                  className="w-full text-center px-10 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
                 >
-                  {isSearching ? "Searching..." : "Find Seat"}
+                  {isSearching ? "Searching..." : "Search"}
                 </button>
               </div>
             </div>
