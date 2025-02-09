@@ -114,9 +114,9 @@ const SeatingChart = () => {
             </div>
             <div className="flex items-center gap-3 mb-2">
               <Users size={28} />
-              <h2 className="text-2xl font-bold">Daniel & Anthea's Wedding</h2>
+              <h2 className="text-2xl font-playfair-display">Daniel & Anthea's Wedding</h2>
             </div>
-            <p className="text-blue-100">
+            <p className="text-blue-100 font-playfair-display">
               Find your assigned table for the reception
             </p>
           </div>
@@ -125,7 +125,7 @@ const SeatingChart = () => {
             {/* Search Section */}
             <div className="relative">
               <div className="flex gap-3">
-                <div className="relative flex-1">
+                <div className="relative flex-1 ">
                   <input
                     type="text"
                     placeholder="Enter your name"

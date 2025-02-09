@@ -7,6 +7,9 @@ module.exports = {
       animation: {
         fadeIn: "fadeIn 0.3s ease-out",
       },
+      fontFamily: {
+        "playfair-display": ["playfair display"],
+      },
     },
   },
   plugins: [],
