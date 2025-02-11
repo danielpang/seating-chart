@@ -7,7 +7,7 @@ import * as Papa from "papaparse";
 import FloorPlan from "./FloorPlan";
 import GuestCard from "./GuestCard";
 
-const csvFilePath = require("../lib/seating_4.csv");
+const csvFilePath = require("../lib/seating_5.csv");
 
 const SeatingChart = () => {
   const [searchName, setSearchName] = useState("");
