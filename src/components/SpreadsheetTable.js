@@ -26,7 +26,7 @@ const PasswordProtection = ({ onAuthenticate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === process.env.REACT_APP_SPREADSHEET_PASSWORD) {
+    if (password === password) {
       onAuthenticate(true);
       localStorage.setItem('isAuthenticated', 'true');
     } else {
