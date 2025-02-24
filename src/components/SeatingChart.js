@@ -7,8 +7,6 @@ import * as Papa from "papaparse";
 import FloorPlan from "./FloorPlan";
 import GuestCard from "./GuestCard";
 
-const csvFilePath = require("../lib/seating_5.csv");
-
 const SeatingChart = () => {
   const [searchName, setSearchName] = useState("");
   const [guestList, setGuestList] = useState([]);
@@ -20,43 +18,76 @@ const SeatingChart = () => {
   const [selectedTable, setSelectedTable] = useState(null);
 
   useEffect(() => {
+    const csvFilePath = require("../lib/seating_5.csv");
+    const liveData = localStorage.getItem('tableData');
+
     // Check system preference for dark mode
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setIsDarkMode(true);
     }
 
-    fetch(csvFilePath)
-      .then((response) => response.text())
-      .then((responseText) => {
-        // -- parse csv
-        Papa.parse(responseText, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            if (results.data && results.data.length > 0) {
-              // Process the CSV data and add identifiers
-              const processedData = results.data.map((row, index) => ({
-                name: row.name,
-                table: row.table,
-                email: row.email,
-                identifier: `guest_${index}_${row.name.toLowerCase().replace(/\s+/g, "_")}`,
-              }));
-              setGuestList(processedData);
-            } else {
-              // If CSV is empty, use fallback data
-              console.log("No data found in CSV");
+    if (liveData) {
+      try {
+        const filteredData = setGuestDataFromStorage(liveData);
+        console.log("JSON data loaded:", filteredData);
+        setGuestList(filteredData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error loading live data:", error);
+        setGuestList([]);
+        setIsLoading(false);
+      }
+    } else {
+      fetch(liveData)
+        .then((response) => response.text())
+        .then((responseText) => {
+          // -- parse csv
+          Papa.parse(responseText, {
+            header: true,
+            skipEmptyLines: true,
+            complete: (results) => {
+              if (results.data && results.data.length > 0) {
+                console.log("CSV data loaded:", results.data);
+                // Process the CSV data and add identifiers
+                const processedData = results.data.map((row, index) => ({
+                  name: row.name,
+                  table: row.table,
+                  email: row.email,
+                  identifier: `guest_${index}_${row.name.toLowerCase().replace(/\s+/g, "_")}`,
+                }));
+                setGuestList(processedData);
+              } else {
+                // If CSV is empty, use fallback data
+                console.log("No data found in CSV");
+                setGuestList([]);
+              }
+              setIsLoading(false);
+            },
+            error: (error) => {
+              console.error("CSV parsing error:", error);
               setGuestList([]);
-            }
-            setIsLoading(false);
-          },
-          error: (error) => {
-            console.error("CSV parsing error:", error);
-            setGuestList([]);
-            setIsLoading(false);
-          },
+              setIsLoading(false);
+            },
+          });
         });
-      });
+    }
+
+    // Listen for changes
+    const handleStorageChange = (e) => {
+      if (e.key === 'tableData') {
+        const filteredData = setGuestDataFromStorage(e.newValue);
+        setGuestList(filteredData);
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
+
+  const setGuestDataFromStorage = (liveData) => {
+    const parsedData = JSON.parse(liveData);
+    const filteredData = parsedData.filter((guest) => guest.name && guest.table );
+    return filteredData;
+  }
 
   const handleSearch = () => {
     setIsSearching(true);
