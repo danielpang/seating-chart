@@ -1,0 +1,35 @@
+{
+  "version": "3",
+  "remote": {
+    "https://edge.netlify.com/": "fd941d61d88673d5f28aab283fb86fcc50f08a3bc80ee5470498fcfa88c65cfb",
+    "https://edge.netlify.com/bootstrap/config.ts": "0aa0a225d978b89e0e62cbd853701605199e7a84095e55eeb70147faf1a24803",
+    "https://edge.netlify.com/bootstrap/context.ts": "b9b4e7cbb67a9d83cb28e45145ba3dfa6f05ad965587ef7e2fb0896da62dd16e",
+    "https://edge.netlify.com/bootstrap/cookie.ts": "8b0baae708989ca183c6f3b4ab3d029e6abcbc2e43f93edeb0ff447b3bbc3a05",
+    "https://edge.netlify.com/bootstrap/edge_function.ts": "b8253e86aa83c67341f5cfedeba5049d77fbf84dcab7eceff7566b7728ae9b39",
+    "https://edge.netlify.com/bootstrap/globals/types.ts": "4d90649d4668839422ef94766c53174c3f19c001886eea3266c082a6197fe2fe"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@eslint/js@^9.20.0",
+        "npm:@testing-library/jest-dom@^6.6.3",
+        "npm:@testing-library/react@^13.4.0",
+        "npm:@testing-library/user-event@^13.5.0",
+        "npm:clsx@^1.2.1",
+        "npm:eslint-plugin-react@^7.37.4",
+        "npm:eslint@^8.57.1",
+        "npm:express@^4.21.2",
+        "npm:globals@^15.14.0",
+        "npm:jest@^27.5.1",
+        "npm:lucide-react@^0.263.1",
+        "npm:papaparse@^5.5.1",
+        "npm:prettier@^3.4.2",
+        "npm:react-dom@^18.2.0",
+        "npm:react-router-dom@^7.2.0",
+        "npm:react-scripts@5.0.1",
+        "npm:react@^18.2.0",
+        "npm:tailwindcss@^3.3.0"
+      ]
+    }
+  }
+}

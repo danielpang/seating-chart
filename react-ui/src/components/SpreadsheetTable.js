@@ -26,13 +26,10 @@ const PasswordProtection = ({ onAuthenticate }) => {
 
   const authenticate = async (input) => {
     try {
-      const response = await fetch('/api/credentials', {
+      const response = await fetch('/api/auth', {
         method: 'POST',
-        body: JSON.stringify({
-          password: input
-        }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "password": input,
         }
       });
 
