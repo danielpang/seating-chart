@@ -12,7 +12,7 @@ export default async (req, context) => {
         }
         return new Response("success", { headers: headers});
     }
-    return new Response("Forbidden", { status: 403 });
+    return new Response("Unauthorized", { status: 401 });
 };
 
 export const config = {
