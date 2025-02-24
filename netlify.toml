@@ -7,4 +7,4 @@
   status = 200
   to = "/.netlify/functions/api/:splat"
 [build.environment]
-  DENO_VERSION = "1.46.3"
+  DENO_VERSION = "1.40.0"
