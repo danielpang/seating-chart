@@ -17,8 +17,10 @@
     "tailwindcss": "^3.3.0"
   },
   "scripts": {
-    "start": "node server",
-    "build": "cd react-ui/ && npm install && npm run build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
