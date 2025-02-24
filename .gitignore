@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# build
+/react-ui/build
+/react-ui/node_modules
+
 # testing
 /coverage
 

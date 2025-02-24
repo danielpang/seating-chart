@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Plus, ChevronUp, ChevronDown, Trash2 } from 'lucide-react';
+import { Download, Plus, ChevronUp, ChevronDown, Trash2, RefreshCw } from 'lucide-react';
 
 // Helper function to convert data to CSV
 const convertToCSV = (data) => {
-  const filledRows = data.filter(row => 
+  const filledRows = data.filter((row) =>
     row.name !== '' || row.table !== '' || row.email !== ''
   );
 
@@ -24,9 +24,28 @@ const PasswordProtection = ({ onAuthenticate }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const authenticate = async (input) => {
+    try {
+      const response = await fetch('/api/credentials', {
+        method: 'POST',
+        body: JSON.stringify({
+          password: input
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      });
+
+      return response.status === 200;
+    } catch (error) {
+      console.error('Error authenticating:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === password) {
+    if (await authenticate(password)) {
       onAuthenticate(true);
       localStorage.setItem('isAuthenticated', 'true');
     } else {
@@ -170,6 +189,18 @@ const SpreadsheetTable = () => {
     }
   };
 
+  const clearTable = () => {
+    if (window.confirm('Are you sure you want to clear all data from the table?')) {
+      const emptyData = Array(150).fill().map(() => ({
+        name: '',
+        table: '',
+        email: ''
+      }));
+      setTableData(emptyData);
+      setSelectedRow(null);
+    }
+  };
+
   const exportToCSV = () => {
     const csvContent = localStorage.getItem('tableDataCSV');
     
@@ -208,6 +239,13 @@ const SpreadsheetTable = () => {
           >
             <Download size={20} />
             Download CSV
+          </button>
+          <button
+            onClick={clearTable}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded flex items-center gap-2"
+          >
+            <RefreshCw size={20} />
+            Clear Table
           </button>
         </div>
       </div>
