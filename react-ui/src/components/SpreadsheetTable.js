@@ -26,13 +26,10 @@ const PasswordProtection = ({ onAuthenticate }) => {
 
   const authenticate = async (input) => {
     try {
-      const response = await fetch('https://deploy-preview-2--danielandanthea.netlify.app/api/auth', {
+      const response = await fetch('/api/auth', {
         method: 'POST',
-        body: JSON.stringify({
-          password: input
-        }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "password": input,
         }
       });
 

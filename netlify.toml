@@ -7,5 +7,4 @@
   status = 200
   to = "/.netlify/functions/api/:splat"
 [dev]
-  targetPort = 3000 # react app's port
   port = 8888 # netlify dev server port

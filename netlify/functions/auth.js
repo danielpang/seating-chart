@@ -5,7 +5,12 @@ export default async (req, context) => {
     const input = req.headers.get("password");
     
     if (input === spreadsheetPassword) {
-        return new Response("success");
+        const headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        }
+        return new Response("success", { headers: headers});
     }
     return new Response("Forbidden", { status: 403 });
 };
