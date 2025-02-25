@@ -28,10 +28,14 @@ const SeatingChart = () => {
     }
 
     console.log(liveData);
-    const filteredData = setGuestDataFromStorage(liveData);
-    if (filteredData.length > 0) {
-      setGuestList(filteredData);
-      setIsLoading(false);
+    if (liveData) {
+      const filteredData = setGuestDataFromStorage(liveData);
+      if (filteredData.length > 0) {
+        setGuestList(filteredData);
+        setIsLoading(false);
+      } else {
+        useBackupData();
+      }
     } else {
       useBackupData();
     }
