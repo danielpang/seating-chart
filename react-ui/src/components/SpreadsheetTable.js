@@ -96,6 +96,13 @@ const SpreadsheetTable = () => {
 
     asyncGetSeatingData()
       .then((data) => {
+        if (data.length === 0 || data === null || data === undefined) {
+          data = Array(150).fill().map(() => ({
+            name: '',
+            table: '',
+            email: ''
+          }));
+        }
         setTableData(data);
       })
       .catch((error) => {
