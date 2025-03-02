@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Plus, ChevronUp, ChevronDown, Trash2, RefreshCw } from 'lucide-react';
+import { authenticate, getSeatingData, createOrUpdateSeatingData } from './DataAccessLayer';
 
 // Helper function to convert data to CSV
 const convertToCSV = (data) => {
@@ -23,22 +24,6 @@ const convertToCSV = (data) => {
 const PasswordProtection = ({ onAuthenticate }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  const authenticate = async (input) => {
-    try {
-      const response = await fetch('/api/auth', {
-        method: 'POST',
-        headers: {
-          "password": input,
-        }
-      });
-
-      return response.status === 200;
-    } catch (error) {
-      console.error('Error authenticating:', error);
-      return false;
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,6 +64,16 @@ const PasswordProtection = ({ onAuthenticate }) => {
   );
 };
 
+const asyncGetSeatingData = async () => {
+  const data = await getSeatingData();
+  return data;
+};
+
+const asyncCreateOrUpdateSeatingData = async (tableData) => {
+  const response = await createOrUpdateSeatingData(tableData);
+  return response;
+};
+
 const SpreadsheetTable = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [tableData, setTableData] = useState(
@@ -92,27 +87,40 @@ const SpreadsheetTable = () => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   // Load data from localStorage on mount
+  // Load table data from server
   useEffect(() => {
     const savedAuth = localStorage.getItem('isAuthenticated');
     if (savedAuth === 'true') {
       setIsAuthenticated(true);
     }
 
-    const savedData = localStorage.getItem('tableData');
-    if (savedData) {
-      try {
-        const parsedData = JSON.parse(savedData);
-        setTableData(parsedData);
-      } catch (error) {
+    asyncGetSeatingData()
+      .then((data) => {
+        setTableData(data);
+      })
+      .catch((error) => {
         console.error('Error loading saved data:', error);
-      }
-    }
+        setTableData(Array.from([]));
+      });
   }, []);
 
-  // Auto-save to localStorage
+  // Auto-save to CSV data to localStorage
+  // auto save table data to server
   useEffect(() => {
     const saveData = () => {
-      localStorage.setItem('tableData', JSON.stringify(tableData));
+      console.log("tableData: ", JSON.stringify(tableData));
+      asyncCreateOrUpdateSeatingData(tableData)
+        .then((success) => {
+          if (success) {
+            console.log('Data saved successfully', success);
+          } else {
+            console.error('Failed to save data');
+          }
+        }).catch((error) => {
+          console.error('Failed to save data:', error);
+        })
+
+
       localStorage.setItem('tableDataCSV', convertToCSV(tableData));
       setLastSaved(new Date().toLocaleTimeString());
     };

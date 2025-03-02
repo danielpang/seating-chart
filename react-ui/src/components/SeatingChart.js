@@ -6,8 +6,10 @@ import consecutiveMatch from "./Search";
 import * as Papa from "papaparse";
 import FloorPlan from "./FloorPlan";
 import GuestCard from "./GuestCard";
+import { getSeatingData } from "./DataAccessLayer";
 
 const csvFilePath = require("../lib/seating_5.csv");
+const liveData = await getSeatingData();
 
 const SeatingChart = () => {
   const [searchName, setSearchName] = useState("");
@@ -20,8 +22,6 @@ const SeatingChart = () => {
   const [selectedTable, setSelectedTable] = useState(null);
 
   useEffect(() => {
-    const liveData = localStorage.getItem('tableData');
-
     // Check system preference for dark mode
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setIsDarkMode(true);
@@ -56,8 +56,7 @@ const SeatingChart = () => {
   }, []);
 
   const setGuestDataFromStorage = (liveData) => {
-    const parsedData = JSON.parse(liveData);
-    const filteredData = parsedData.filter((guest) => guest.name && guest.table);
+    const filteredData = liveData.filter((guest) => guest.name && guest.table);
     return filteredData;
   }
 
