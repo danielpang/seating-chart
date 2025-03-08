@@ -169,7 +169,7 @@ const SeatingChart = () => {
                     maximum-scale={100}
                     onChange={(e) => setSearchName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="w-full px-4 py-3 rounded-md bg-white dark:border-gray-600 dark:bg-transparent dark:text-white dark:placeholder-white text-black placeholder-gray-450 border border-gray-500 focus:outline-none dark:focus:ring-gray-900 focus:ring-1 focus:ring-white"
+                    className="w-full px-4 py-3 rounded-md bg-white dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white text-black placeholder-gray-450 border border-gray-500 focus:outline-none dark:focus:ring-gray-900 focus:ring-1 focus:ring-white"
                     />
                   <Search
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white"
