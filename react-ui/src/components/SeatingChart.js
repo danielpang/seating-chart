@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Search, Users, Mail } from "lucide-react";
+import { Search } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import Layout from "./Layout";
 import consecutiveMatch from "./Search";
@@ -139,21 +139,20 @@ const SeatingChart = () => {
 
   return (
     <Layout isDarkMode={isDarkMode}>
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
+      <div className="rounded-2xl max-w-4xl mx-auto ">
+        <div className="bg-white dark:bg-opacity-25 dark:bg-black/35 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-8 text-white relative">
+          <div className="p-8 text-black relative">
             <div className="absolute top-4 right-4">
               <ThemeToggle
                 isDark={isDarkMode}
                 onToggle={() => setIsDarkMode(!isDarkMode)}
               />
             </div>
-            <div className="flex items-center gap-1.5 mb-2">
-              <Users size={28} />
-              <h2 className="text-2xl font-playfair-display">Daniel & Anthea's Wedding</h2>
+            <div className="items-center gap-1.5 mb-2">
+              <h2 className="text-2xl font-playfair-display text-center dark:text-white">Daniel & Anthea's Wedding</h2>
             </div>
-            <p className="text-blue-100 font-playfair-display">
+            <p className="text-black text-center dark:text-white font-playfair-display">
               Find your assigned table for the reception
             </p>
           </div>
@@ -170,10 +169,10 @@ const SeatingChart = () => {
                     maximum-scale={100}
                     onChange={(e) => setSearchName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 outline-none transition-all duration-200"
-                  />
+                    className="w-full px-4 py-3 rounded-md bg-white dark:border-gray-600 dark:bg-transparent dark:text-white dark:placeholder-white text-black placeholder-gray-450 border border-gray-500 focus:outline-none dark:focus:ring-gray-900 focus:ring-1 focus:ring-white"
+                    />
                   <Search
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white"
                     size={20}
                   />
                 </div>
@@ -182,7 +181,7 @@ const SeatingChart = () => {
                 <button
                   onClick={handleSearch}
                   disabled={isSearching}
-                  className="w-full text-center px-10 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
+                  className="w-full text-center px-10 py-3 bg-black hover:bg-grey-600 text-white rounded-xl font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
                 >
                   {isSearching ? "Searching..." : "Find Seat"}
                 </button>
@@ -200,7 +199,7 @@ const SeatingChart = () => {
             {foundGuests.length > 0 && (
               <div className="mt-8 max-w-4xl mx-auto">
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4 text-center">
+                  <h3 className="text-xl font-semibold text-black dark:black mb-4 text-center">
                     Found {foundGuests.length} matching{" "}
                     {foundGuests.length === 1 ? "guest" : "guests"}
                   </h3>
@@ -222,14 +221,14 @@ const SeatingChart = () => {
                     })}
                   </div>
 
-                  <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
+                  <p className="mt-6 text-sm text-gray-500 text-black text-center">
                     Please proceed to your assigned table when the event begins
                   </p>
                 </div>
 
                 {/* Floor Plan */}
                 <div className="mt-8">
-                  <h3 className="text-xl font-medium text-gray-800 dark:text-gray-200">
+                  <h3 className="text-xl font-medium text-black dark:black mb-4 text-center">
                   Floor Plan
                   </h3>
                   <FloorPlan
