@@ -150,11 +150,11 @@ const SeatingChart = () => {
               />
             </div>
             <div className="items-center mb-2">
-              <h2 className="text-6xl font-Brittany-Signature text-center dark:text-white">Seating Chart</h2>
+              <h2 className="text-6xl font-Brittany-Signature leading-[1.5] text-center dark:text-white">Seating Chart</h2>
             </div>
           </div>
 
-          <div className="p-8">
+          <div className="p-6">
             {/* Search Section */}
             <div className="relative">
               <div className="flex gap-3">
@@ -178,7 +178,7 @@ const SeatingChart = () => {
                 <button
                   onClick={handleSearch}
                   disabled={isSearching}
-                  className="w-full text-center px-10 py-3 bg-black hover:bg-grey-600 text-white rounded-xl font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
+                  className="w-full text-center px-10 py-3 bg-black hover:bg-grey-600 text-white rounded-md font-medium transition-colors duration-200 items-center gap-2 disabled:opacity-50"
                 >
                   {isSearching ? "Searching..." : "Find Seat"}
                 </button>

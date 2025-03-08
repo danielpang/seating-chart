@@ -17,7 +17,7 @@ const Layout = ({ children, isDarkMode, backgroundImage = "/background.jpeg" }) 
         />
 
         {/* Content container with semi-transparent overlay for readability */}
-        <div className="relative z-10 container mx-auto py-8 px-4">
+        <div className="relative z-10 container mx-auto py-4 px-4">
           <div className="container mx-auto py-8 px-4">{children}</div>
         </div>
       </div>
