@@ -9,7 +9,7 @@ const ThemeToggle = ({ isDark, onToggle }) => {
       aria-label="Toggle theme"
     >
       {isDark ? (
-        <Sun className="w-5 h-5 text-black" />
+        <Sun className="w-5 h-5 text-white" />
       ) : (
         <Moon className="w-5 h-5 text-black" />
       )}
