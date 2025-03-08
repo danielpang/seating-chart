@@ -139,10 +139,10 @@ const SeatingChart = () => {
 
   return (
     <Layout isDarkMode={isDarkMode}>
-      <div className="rounded-2xl max-w-4xl mx-auto ">
+      <div className="rounded-2xl max-w-4xl mx-auto my-auto">
         <div className="bg-white dark:bg-opacity-25 dark:bg-black/35 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
           {/* Header */}
-          <div className="p-8 text-black relative">
+          <div className="px-8 py-8 pb-2 text-black relative">
             <div className="absolute top-4 right-4">
               <ThemeToggle
                 isDark={isDarkMode}
@@ -150,14 +150,14 @@ const SeatingChart = () => {
               />
             </div>
             <div className="items-center mb-2">
-              <h2 className="text-6xl font-Brittany-Signature leading-[1.5] text-center dark:text-white">Seating Chart</h2>
+              <h2 className="text-5xl font-Brittany-Signature leading-[1.5] text-center dark:text-white">Seating Chart</h2>
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="px-8 py-4">
             {/* Search Section */}
             <div className="relative">
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <div className="relative flex-1 ">
                   <input
                     type="text"
@@ -166,7 +166,7 @@ const SeatingChart = () => {
                     maximum-scale={100}
                     onChange={(e) => setSearchName(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                    className="w-full px-4 py-3 rounded-md bg-white dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white text-black placeholder-gray-450 border border-gray-500 focus:outline-none dark:focus:ring-gray-900 focus:ring-1 focus:ring-white"
+                    className="w-full px-4 py-2 rounded-md bg-white dark:border-white dark:bg-transparent dark:text-white dark:placeholder-white text-black placeholder-gray-450 border border-gray-500 focus:outline-none dark:focus:ring-gray-900 focus:ring-1 focus:ring-white"
                     />
                   <Search
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white"
@@ -187,7 +187,7 @@ const SeatingChart = () => {
 
             {/* Error Message */}
             {error && (
-              <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400">
+              <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400">
                 {error}
               </div>
             )}
