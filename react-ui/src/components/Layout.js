@@ -11,7 +11,7 @@ const Layout = ({ children, isDarkMode, backgroundImage = "/background.jpeg" }) 
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'blur(6px)',
+            filter: 'blur(4px)',
             opacity: 0.85,
           }}
         />

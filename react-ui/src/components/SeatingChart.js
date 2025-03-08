@@ -149,12 +149,9 @@ const SeatingChart = () => {
                 onToggle={() => setIsDarkMode(!isDarkMode)}
               />
             </div>
-            <div className="items-center gap-1.5 mb-2">
-              <h2 className="text-2xl font-playfair-display text-center dark:text-white">Daniel & Anthea's Wedding</h2>
+            <div className="items-center mb-2">
+              <h2 className="text-6xl font-Brittany-Signature text-center dark:text-white">Seating Chart</h2>
             </div>
-            <p className="text-black text-center dark:text-white font-playfair-display">
-              Find your assigned table for the reception
-            </p>
           </div>
 
           <div className="p-8">

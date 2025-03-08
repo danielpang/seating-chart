@@ -8,7 +8,7 @@ module.exports = {
         fadeIn: "fadeIn 0.3s ease-out",
       },
       fontFamily: {
-        "playfair-display": ["playfair display"],
+        "Brittany-Signature": ["Brittany-Signature", "sans-serif"],
       },
     },
   },

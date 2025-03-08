@@ -13,6 +13,11 @@
   }
 }
 
+@font-face {
+  font-family: 'Brittany-Signature';
+  src: local('Brittany Signature'), url('./fonts/brittany_signature/BrittanySignature.ttf') format('truetype');
+}
+
 .fade-in {
   animation: fadeIn 0.3s ease-out;
 }
