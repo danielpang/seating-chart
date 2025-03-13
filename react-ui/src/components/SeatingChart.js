@@ -6,6 +6,7 @@ import consecutiveMatch from "./Search";
 import * as Papa from "papaparse";
 import FloorPlan from "./FloorPlan";
 import GuestCard from "./GuestCard";
+import { EmptyTableMembersCarousel, TableMembersCarousel, organizeGuestsByTable } from "./TableMembersCarousel";
 import { getSeatingData } from "./DataAccessLayer";
 
 const csvFilePath = require("../lib/seating_5.csv");
@@ -20,6 +21,7 @@ const SeatingChart = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTable, setSelectedTable] = useState(null);
+  const [showTableMembers, setShowTableMembers] = useState(false);
 
   useEffect(() => {
     // Check system preference for dark mode
@@ -100,6 +102,7 @@ const SeatingChart = () => {
     setError("");
     setFoundGuests([]);
     setSelectedTable(null);
+    setShowTableMembers(false);
 
     if (!searchName.trim()) {
       setError("Please enter a name to search");
@@ -122,7 +125,17 @@ const SeatingChart = () => {
   };
 
   const handleCardSelect = (tableNumber) => {
-    setSelectedTable(selectedTable === tableNumber ? null : tableNumber);
+    if (selectedTable === tableNumber) {
+      setSelectedTable(null);
+      setShowTableMembers(false)
+    } else {
+      setSelectedTable(tableNumber);
+      setShowTableMembers(true);
+    }
+  };
+
+  const handleNavigateTable = (tableNumber) => {
+    setSelectedTable(tableNumber);
   };
 
   if (isLoading) {
@@ -196,7 +209,7 @@ const SeatingChart = () => {
             {foundGuests.length > 0 && (
               <div className="mt-8 max-w-4xl mx-auto">
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-900/50">
-                  <h3 className="text-xl font-semibold text-black dark:black mb-4 text-center">
+                  <h3 className="text-xl font-semibold text-black dark:text-white mb-4 text-center">
                     Found {foundGuests.length} matching{" "}
                     {foundGuests.length === 1 ? "guest" : "guests"}
                   </h3>
@@ -218,14 +231,14 @@ const SeatingChart = () => {
                     })}
                   </div>
 
-                  <p className="mt-6 text-sm text-gray-500 text-black text-center">
+                  <p className="mt-6 text-sm text-gray-500 text-black dark:text-white text-center">
                     Please proceed to your assigned table when the event begins
                   </p>
                 </div>
 
                 {/* Floor Plan */}
                 <div className="mt-8">
-                  <h3 className="text-xl font-medium text-black dark:black mb-4 text-center">
+                  <h3 className="text-xl font-medium text-black dark:text-white mb-4 text-center">
                   Floor Plan
                   </h3>
                   <FloorPlan
@@ -233,6 +246,24 @@ const SeatingChart = () => {
                     selectedTable={selectedTable}
                   />
                 </div>
+              </div>
+            )}
+
+            {/* Empty Table Members Carousel */}
+            {foundGuests.length > 0 && !showTableMembers && !selectedTable && (
+              <div className="mb-12 mt-8">
+                <EmptyTableMembersCarousel />
+              </div>
+            )}
+
+            {/* Table Members Carousel */}
+            {showTableMembers && selectedTable && (
+              <div className="mb-12 mt-8">
+                <TableMembersCarousel
+                  tables={organizeGuestsByTable(guestList)}
+                  currentTableNumber={selectedTable}
+                  onNavigate={handleNavigateTable}
+                />
               </div>
             )}
           </div>
