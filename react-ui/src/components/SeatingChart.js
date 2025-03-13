@@ -97,6 +97,14 @@ const SeatingChart = () => {
       });
   }
 
+  const handleFoundMatches = (matches) => {
+    if (matches.length === 1) {
+      setSelectedTable(matches[0].table);
+      setShowTableMembers(true);
+    }
+    setFoundGuests(matches);
+  }
+
   const handleSearch = () => {
     setIsSearching(true);
     setError("");
@@ -116,7 +124,7 @@ const SeatingChart = () => {
       );
 
       if (matches.length > 0) {
-        setFoundGuests(matches);
+        handleFoundMatches(matches);
       } else {
         setError("No matching guests found");
       }
