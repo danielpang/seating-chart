@@ -65,10 +65,9 @@ export const TableMembersCarousel = ({ tables, currentTableNumber, onNavigate })
       </div>
       
       <div className="mt-4">
-        <ul className="grid grid-cols-2 gap-4 m-auto place-items-start sm:place-items-center">
+        <ul className="grid grid-cols-1 gap-2 m-auto place-items-center">
           {currentTable.members && currentTable.members.map((member, index) => (
             <li key={index} className="flex items-center">
-              <span className="text-gray-800 dark:text-gray-200 mr-2">•</span>
               <span className="text-gray-800 dark:text-gray-200">{member}</span>
             </li>
           ))}

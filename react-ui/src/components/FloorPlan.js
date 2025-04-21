@@ -17,27 +17,26 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
 
   // Table configuration with larger spacing
   const tables = [
-    // Top Tables
-    { num: 1, x: 400, y: 120 },
-    { num: 2, x: 560, y: 120 },
-    { num: 3, x: 720, y: 120 },
-    { num: 4, x: 880, y: 120 },
-    // Rectangular tables
-    { num: 5, x: 800, y: 250, table_type: "rectangular" },
-    { num: 6, x: 800, y: 340, table_type: "rectangular" },
+    // Left Tables
+    { num: 1, x: 350, y: 140 },
+    { num: 2, x: 360, y: 260 },
+    { num: 3, x: 230, y: 170 },
+    { num: 4, x: 240, y: 290 },
+    { num: 5, x: 160, y: 410 },
+    { num: 6, x: 270, y: 440 },
     // Middle Tables (5 tables)
-    { num: 7, x: 400, y: 320 },
-    { num: 8, x: 520, y: 250 },
-    { num: 9, x: 520, y: 390 },
-    { num: 10, x: 680, y: 250 },
-    { num: 11, x: 680, y: 390 },
-    // Bottom Tables (4 tables)
-    { num: 12, x: 400, y: 520 },
-    { num: 13, x: 560, y: 520 },
-    { num: 14, x: 720, y: 520 },
-    { num: 15, x: 880, y: 520 },
+    { num: 7, x: 370, y: 380 },
+    { num: 8, x: 470, y: 440 },
+    { num: 9, x: 600, y: 440 },
+    { num: 10, x: 720, y: 440 },
+    { num: 11, x: 840, y: 420 },
+    // Right Tables (4 tables)
+    { num: 12, x: 750, y: 330 },
+    { num: 13, x: 860, y: 280 },
+    { num: 14, x: 750, y: 200 },
+    { num: 15, x: 860, y: 160 },
     // Head Table
-    { num: 16, x: 950, y: 280, table_type: "head_table" },
+    { num: 16, x: 510, y: 60, table_type: "head_table" },
   ];
 
   return (
@@ -53,24 +52,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="fill-gray-50 dark:fill-gray-900"
           />
 
-          {/* Entrance */}
-          <rect
-            x="0"
-            y="580"
-            width="100"
-            height="40"
-            className="fill-gray-300 dark:fill-gray-600"
-          />
-          <text
-            x="50"
-            y="605"
-            className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
-            textAnchor="middle"
-          >
-            Entrance
-          </text>
-
-          {/* Bar */}
+          {/* Window */}
           <rect
             x="0"
             y="290"
@@ -84,10 +66,10 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Bar
+            Window
           </text>
 
-          {/* Stone Wall */}
+          {/* Patio Doors */}
           <rect
             x="500"
             y="580"
@@ -101,10 +83,10 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Stone Wall
+            Patio Doors
           </text>
 
-          {/* Patio Doors */}
+          {/* Stone Wall */}
           <rect
             x="500"
             y="0"
@@ -118,10 +100,10 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Patio Doors
+            Stone Wall
           </text>
 
-          {/* Window */}
+          {/* Bar */}
           <rect
             x="1040"
             y="300"
@@ -135,20 +117,20 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Window
+            Bar
           </text>
 
           {/* Dance Floor */}
           <rect
-            x="120"
+            x="425"
             y="120"
-            width="180"
-            height="400"
+            width="250"
+            height="250"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="210"
-            y="320"
+            x="550"
+            y="200"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
@@ -165,13 +147,13 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
                     key={table.num}
                     x={table.x}
                     y={table.y}
-                    width="40"
-                    height="80"
+                    width="80"
+                    height="40"
                     className={`transition-colors duration-300 ${getTableColor(table.num)}`}
                   />
                   <text
-                    x={table.x + 20}
-                    y={table.y + 40}
+                    x={table.x + 40}
+                    y={table.y + 20}
                     className="text-2xl fill-gray-700 dark:fill-gray-200 font-bold"
                     textAnchor="middle"
                     dominantBaseline="middle"
