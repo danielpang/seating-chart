@@ -52,21 +52,21 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="fill-gray-50 dark:fill-gray-900"
           />
 
-          {/* Window */}
+          {/* Champagn Tower */}
           <rect
             x="0"
             y="290"
-            width="100"
+            width="160"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="50"
+            x="80"
             y="315"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Window
+            Champagn Tower
           </text>
 
           {/* Patio Doors */}
