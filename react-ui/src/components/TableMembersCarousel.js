@@ -105,7 +105,7 @@ export const organizeGuestsByTable = (guests) => {
   tables['10'].groupName = "CCF Friends";
   tables['11'].groupName = "RHCCC Friends";
   tables['12'].groupName = "RHCCC Friends";
-  tables['13'].groupName = "RHCCC Small Group and Pastors";
+  tables['13'].groupName = "RHCCC Friends and Pastors";
   tables['14'].groupName = "Bridesmaids";
   tables['15'].groupName = "Groomsmen";
   tables['16'].groupName = "Bride and Groom";
