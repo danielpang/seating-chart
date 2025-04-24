@@ -66,7 +66,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Champagn Tower
+            Champagne Tower
           </text>
 
           {/* Patio Doors */}

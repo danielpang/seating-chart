@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 import Layout from "./Layout";
 import consecutiveMatch from "./Search";
 import * as Papa from "papaparse";
@@ -164,12 +163,6 @@ const SeatingChart = () => {
         <div className="bg-white dark:bg-opacity-25 dark:bg-black/35 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
           {/* Header */}
           <div className="px-8 py-8 pb-2 text-black relative">
-            <div className="absolute top-4 right-4">
-              <ThemeToggle
-                isDark={isDarkMode}
-                onToggle={() => setIsDarkMode(!isDarkMode)}
-              />
-            </div>
             <div className="items-center mb-2">
               <h2 className="text-5xl font-Brittany-Signature leading-[1.5] text-center dark:text-white">Seating Chart</h2>
             </div>
