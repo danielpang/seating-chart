@@ -98,7 +98,7 @@ export const organizeGuestsByTable = (guests) => {
   tables['3'].groupName = "Anthea's Family Friends";
   tables['4'].groupName = "Anthea's Family Friends";
   tables['5'].groupName = "Daniel's Residence Friends and Former Coworkers";
-  tables['6'].groupName = "Anthea's RHCA Friends & Old DG";
+  tables['6'].groupName = "Anthea's Childhood Friends & Old DG";
   tables['7'].groupName = "Anthea's RHCA Friends";
   tables['8'].groupName = "Anthea's Coworkers";
   tables['9'].groupName = "CCF Friends";
