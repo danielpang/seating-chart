@@ -18,6 +18,11 @@
   src: local('Brittany Signature'), url('./fonts/brittany_signature/BrittanySignature.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Bona-Nova';
+  src: local('Bona Nova'), url('./fonts/Bona_Nova/BonaNova-Regular.ttf') format('truetype');
+}
+
 .fade-in {
   animation: fadeIn 0.3s ease-out;
 }

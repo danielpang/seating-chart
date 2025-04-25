@@ -9,6 +9,7 @@ module.exports = {
       },
       fontFamily: {
         "Brittany-Signature": ["Brittany-Signature", "sans-serif"],
+        "Bona-Nova": ["Bona-Nova", "sans-serif"],
       },
     },
   },

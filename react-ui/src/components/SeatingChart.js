@@ -162,7 +162,12 @@ const SeatingChart = () => {
       <div className="rounded-2xl max-w-4xl mx-auto my-auto">
         <div className="bg-white dark:bg-opacity-25 dark:bg-black/35 rounded-2xl shadow-xl overflow-hidden transition-colors duration-200">
           {/* Header */}
-          <div className="px-8 py-8 pb-2 text-black relative">
+          <div className="px-8 py-8 pb-1 text-black relative">
+            <div className="items-center">
+              <h2 className="text-xl font-Bona-Nova leading-[1.5] tracking-widest text-center dark:text-white">Daniel & Anthea</h2>
+            </div>
+          </div>
+          <div className="px-8 py-4 pb-2 text-black relative">
             <div className="items-center mb-2">
               <h2 className="text-5xl font-Brittany-Signature leading-[1.5] text-center dark:text-white">Seating Chart</h2>
             </div>
