@@ -164,7 +164,7 @@ const SeatingChart = () => {
           {/* Header */}
           <div className="px-8 py-8 pb-1 text-black relative">
             <div className="items-center">
-              <h2 className="text-l font-Bona-Nova leading-[1.5] tracking-widest text-center dark:text-white">Daniel & Anthea</h2>
+              <h2 className="text-l font-Bona-Nova leading-[1.5] tracking-widest text-center dark:text-white">Vincent & Erika</h2>
             </div>
           </div>
           <div className="px-8 py-4 pb-2 text-black relative">

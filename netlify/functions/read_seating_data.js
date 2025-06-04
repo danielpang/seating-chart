@@ -5,9 +5,10 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 const env = process.env.NODE_ENV || 'development';
+const client = process.env.CLIENT;
 
 export default async (req, context) => {
-    const { data, error } = await supabase.from(`seating_data_${env}`).select();
+    const { data, error } = await supabase.from(`seating_data_${client}_${env}`).select();
     console.log("data output from supabase", data);
     if (error) {
         console.log("Failed to query data with error: ", error);
