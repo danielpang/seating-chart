@@ -93,22 +93,22 @@ export const organizeGuestsByTable = (guests) => {
   });
 
   // Add sample group names for some tables
-  tables['1'].groupName = "Daniel's Family";
-  tables['2'].groupName = "Anthea's Family";
-  tables['3'].groupName = "Anthea's Family Friends";
-  tables['4'].groupName = "Anthea's Family Friends";
-  tables['5'].groupName = "Daniel's Residence Friends and Former Coworkers";
-  tables['6'].groupName = "Anthea's Childhood Friends & Old DG";
-  tables['7'].groupName = "Anthea's RHCA Friends";
-  tables['8'].groupName = "Anthea's Coworkers";
-  tables['9'].groupName = "CCF Friends";
-  tables['10'].groupName = "CCF Friends";
-  tables['11'].groupName = "RHCCC Friends";
-  tables['12'].groupName = "RHCCC Friends";
-  tables['13'].groupName = "RHCCC Friends and Pastors";
-  tables['14'].groupName = "Bridesmaids";
-  tables['15'].groupName = "Groomsmen";
-  tables['16'].groupName = "Bride and Groom";
+  // tables['1'].groupName = "Daniel's Family";
+  // tables['2'].groupName = "Anthea's Family";
+  // tables['3'].groupName = "Anthea's Family Friends";
+  // tables['4'].groupName = "Anthea's Family Friends";
+  // tables['5'].groupName = "Daniel's Residence Friends and Former Coworkers";
+  // tables['6'].groupName = "Anthea's Childhood Friends & Old DG";
+  // tables['7'].groupName = "Anthea's RHCA Friends";
+  // tables['8'].groupName = "Anthea's Coworkers";
+  // tables['9'].groupName = "CCF Friends";
+  // tables['10'].groupName = "CCF Friends";
+  // tables['11'].groupName = "RHCCC Friends";
+  // tables['12'].groupName = "RHCCC Friends";
+  // tables['13'].groupName = "RHCCC Friends and Pastors";
+  // tables['14'].groupName = "Bridesmaids";
+  // tables['15'].groupName = "Groomsmen";
+  // tables['16'].groupName = "Bride and Groom";
   
   return tables;
 };
