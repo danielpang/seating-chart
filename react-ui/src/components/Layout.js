@@ -1,6 +1,9 @@
 import React from "react";
 
-const Layout = ({ children, isDarkMode, backgroundImage = "/background.jpeg" }) => {
+const CLIENT = process.env.REACT_APP_CLIENT || "daniel";
+const backgroundFile = "/${client}-background.jpeg".replace("${client}", CLIENT);
+
+const Layout = ({ children, isDarkMode, backgroundImage = backgroundFile }) => {
   return (
     <div className={isDarkMode ? "dark" : ""}>
       <div className="min-h-screen relative">
