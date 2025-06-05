@@ -1,6 +1,6 @@
 import React from "react";
 
-const CLIENT = process.env.CLIENT || "daniel";
+const CLIENT = process.env.REACT_APP_CLIENT;
 const backgroundFile = "/${client}-background.jpeg".replace("${client}", CLIENT);
 
 const Layout = ({ children, isDarkMode, backgroundImage = backgroundFile }) => {
