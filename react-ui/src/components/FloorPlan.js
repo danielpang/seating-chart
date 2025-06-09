@@ -2,6 +2,7 @@ import React from "react";
 
 const FloorPlan = ({ highlightedTables, selectedTable }) => {
   const tableSet = new Set(highlightedTables.map(String));
+  const CLIENT = process.env.REACT_APP_CLIENT;
 
   const getTableColor = (tableNum) => {
     if (String(tableNum) === String(selectedTable)) {
@@ -16,7 +17,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
   };
 
   // Table configuration with larger spacing
-  const tables = [
+  const daniel_tables = [
     // Left Tables
     { num: 1, x: 350, y: 140 },
     { num: 2, x: 360, y: 260 },
@@ -39,55 +40,83 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
     { num: 16, x: 510, y: 60, table_type: "head_table" },
   ];
 
+  const dao_tables = [
+    // Left Tables
+    { num: 1, x: 350, y: 140, table_type: "rectangular" },
+    { num: 2, x: 350, y: 260, table_type: "rectangular" },
+    { num: 3, x: 350, y: 400, table_type: "rectangular" },
+    { num: 4, x: 440, y: 140, table_type: "rectangular" },
+    { num: 5, x: 440, y: 260, table_type: "rectangular" },
+    { num: 6, x: 440, y: 400, table_type: "rectangular" },
+    { num: 7, x: 530, y: 140, table_type: "rectangular" },
+    { num: 8, x: 530, y: 260, table_type: "rectangular" },
+    { num: 9, x: 620, y: 140, table_type: "rectangular" },
+    { num: 10, x: 620, y: 260, table_type: "rectangular" },
+    { num: 11, x: 620, y: 400, table_type: "rectangular" },
+    { num: 12, x: 710, y: 140, table_type: "rectangular" },
+    { num: 13, x: 710, y: 260, table_type: "rectangular" },
+    { num: 14, x: 710, y: 400, table_type: "rectangular" },
+
+    // Head Table
+    { num: 15, x: 510, y: 60, table_type: "head_table" },
+  ];
+
+  let tables = [];
+  if (CLIENT === "dao") {
+    tables = dao_tables;
+  } else {
+    tables = daniel_tables;
+  }
+
   return (
     <div className="w-full bg-white dark:bg-gray-800 rounded-xl p-6 shadow-inner">
       <div className="aspect-1 relative">
-        <svg viewBox="0 0 1120 640" className="w-full h-full">
+        <svg viewBox="0 0 1120 800" className="w-full h-full">
           {/* Background */}
           <rect
             x="0"
             y="0"
             width="1120"
-            height="640"
+            height="800"
             className="fill-gray-50 dark:fill-gray-900"
           />
 
           {/* Windows */}
-          <rect
-            x="0"
-            y="290"
-            width="100"
-            height="40"
+          {/* <rect
+            x="260"
+            y="550"
+            width="50"
+            height="140"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="50"
-            y="315"
-            className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
+            x="290"
+            y="620"
+            className="text-lg fill-gray-600 dark:fill-gray-300 text-center [writing-mode:sideways-lr]"
             textAnchor="middle"
           >
-            Windows
-          </text>
+            Welcome Table
+          </text> */}
 
           {/* Patio Doors */}
           <rect
             x="500"
-            y="580"
+            y="700"
             width="100"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
             x="550"
-            y="605"
+            y="725"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Patio Doors
+            DJ Booth
           </text>
 
           {/* Stone Wall */}
-          <rect
+          {/* <rect
             x="500"
             y="0"
             width="100"
@@ -101,19 +130,19 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             textAnchor="middle"
           >
             Stone Wall
-          </text>
+          </text> */}
 
           {/* Bar */}
           <rect
-            x="1040"
-            y="300"
+            x="680"
+            y="655"
             width="80"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="1080"
-            y="325"
+            x="720"
+            y="680"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
@@ -121,7 +150,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
           </text>
 
           {/* Dance Floor */}
-          <rect
+          {/* <rect
             x="425"
             y="120"
             width="250"
@@ -135,7 +164,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             textAnchor="middle"
           >
             🪩💃🏻🕺🏻🪩
-          </text>
+          </text> */}
 
           {/* Tables */}
           {tables.map((table) => {
@@ -169,13 +198,13 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
                     key={table.num}
                     x={table.x}
                     y={table.y}
-                    width="120"
-                    height="50"
+                    width="50"
+                    height="120"
                     className={`transition-colors duration-300 ${getTableColor(table.num)}`}
                   />
                   <text
-                    x={table.x + 60}
-                    y={table.y + 25}
+                    x={table.x + 25}
+                    y={table.y + 60}
                     className="text-2xl fill-gray-700 dark:fill-gray-200 font-bold"
                     textAnchor="middle"
                     dominantBaseline="middle"
