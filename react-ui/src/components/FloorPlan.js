@@ -61,9 +61,36 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
     { num: 15, x: 510, y: 60, table_type: "head_table" },
   ];
 
+  const tim_tables = [
+    // Bottom Tables
+    { num: 1, x: 200, y: 600 },
+    { num: 2, x: 370, y: 550 },
+    { num: 3, x: 550, y: 550 },
+    { num: 4, x: 750, y: 570 },
+    { num: 5, x: 940, y: 600 },
+
+    // Middle Tables
+    { num: 6, x: 940, y: 400 },
+    { num: 7, x: 750, y: 380 },
+    { num: 8, x: 520, y: 360 },
+    { num: 9, x: 200, y: 380 },
+
+    // Top Tables
+    { num: 10, x: 200, y: 200 },
+    { num: 11, x: 400, y: 180 },
+    { num: 12, x: 700, y: 180 },
+    { num: 13, x: 940, y: 180 },
+
+    // Head Table
+    { num: 14, x: 510, y: 700, table_type: "head_table" },
+
+  ];
+
   let tables = [];
   if (CLIENT === "dao") {
     tables = dao_tables;
+  } else if (CLIENT === "tim") {
+    tables = tim_tables;
   } else {
     tables = daniel_tables;
   }
@@ -100,19 +127,35 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
 
           {/* Patio Doors */}
           <rect
-            x="500"
+            x="1000"
             y="700"
             width="100"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="550"
+            x="1050"
             y="725"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
             DJ Booth
+          </text>
+
+          <rect
+            x="10"
+            y="700"
+            width="300"
+            height="40"
+            className="fill-gray-300 dark:fill-gray-600"
+          />
+          <text
+            x="150"
+            y="725"
+            className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
+            textAnchor="middle"
+          >
+            Guest Book/ Late Night Snacks
           </text>
 
           {/* Stone Wall */}
@@ -134,15 +177,15 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
 
           {/* Bar */}
           <rect
-            x="680"
-            y="655"
+            x="500"
+            y="50"
             width="80"
             height="40"
             className="fill-gray-300 dark:fill-gray-600"
           />
           <text
-            x="720"
-            y="680"
+            x="540"
+            y="75"
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
