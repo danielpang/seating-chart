@@ -189,7 +189,7 @@ const FloorPlan = ({ highlightedTables, selectedTable }) => {
             className="text-lg fill-gray-600 dark:fill-gray-300 text-center"
             textAnchor="middle"
           >
-            Bar
+            Deck
           </text>
 
           {/* Dance Floor */}
